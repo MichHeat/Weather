@@ -1,0 +1,81 @@
+﻿@using WebApplication1.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: url("https://www.techilife.com/wp-content/uploads/2020/07/screen-5-1536x864.jpg");
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        padding: 0;
+    }
+
+    h2 {
+        font-size: 2em;
+        color: #fff;
+        text-align: center;
+    }
+
+    #loginForm {
+        width: 100%;
+        max-width: 400px; /* Adjust the width as needed */
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+</style>
+<body>
+    <main>
+        <h2>LOGIN</h2>
+        <div id="loginForm" style="color: black;">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row1">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row2">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row3">
+                    <div class="offset-md-2 col-md-10">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>
+                </div>
+                <div class="row4" style="text-align: right;">
+                    <div class="offset-md-2 col-md-10">
+                        <input type="submit" value="Log in" class="btn btn-outline-dark" />
+                    </div>
+                </div>
+            }
+        </div>
+    </main>
+</body>

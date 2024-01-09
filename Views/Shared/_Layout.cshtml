@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark" style="width: 100%; position: absolute; top: 0;">
+    <div class="container">
+        @Html.ActionLink("Weather App", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        @Html.Partial("_LoginPartial")
+    </div>
+    </div>
+</nav>
+<div class="container body-content">
+    @RenderBody()
+    <footer style="color: white; font-weight: bolder">
+        <p>&copy; @DateTime.Now.Year - SLD512_FA4</p>
+    </footer>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+</html>

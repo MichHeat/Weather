@@ -1,0 +1,89 @@
+﻿@model WebApplication1.Models.RegisterViewModel
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: url("https://www.techilife.com/wp-content/uploads/2020/07/Live-Weather-Wallpaper-Apps.png");
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        padding: 0;
+    }
+
+    h2 {
+        font-size: 2em;
+        color: #fff;
+        text-align: center;
+    }
+
+    #Form {
+        width: 200%;
+        max-width: 500px; /* Adjust the width as needed */
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+</style>
+<body>
+    <main aria-labelledby="title">
+        <h2 id="title">@ViewBag.Title</h2>
+        <div id="Form" style="color: black;">
+
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4>Create a brand new account</h4>
+
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                <div class="row">
+                    @Html.LabelFor(m => m.Username, new { @class = "col-md-2 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="row" style="text-align: right;">
+                    <div class="offset-md-2 col-md-10">
+                        <input type="submit" value="Register" class="btn btn-outline-dark" />
+                    </div>
+                </div>
+            }
+        </div>
+    </main>
+</body>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
